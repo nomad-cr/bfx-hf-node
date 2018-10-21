@@ -9,10 +9,10 @@ RUN npm install
 FROM base AS release
 WORKDIR /srv
 COPY --from=dependencies /srv/node_modules ./node_modules
-COPY package.json package-lock.json index.js connect-db.js get-secret.js ./
+COPY lib ./lib
+COPY package.json package-lock.json index.js algos.js ./
 
-ENV WS_URL=wss://api.bitfinex.com/ws/2 \
-    REST_URL=https://api.bitfinex.com \
+ENV PLATFORM=BITFINEX \
 #    API_KEY=CHANGE-ME \
 #    API_SECRET=CHANGE-ME \
 # unset SOCKS_PROXY_URL, means no socks proxy

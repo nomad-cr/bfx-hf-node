@@ -5,20 +5,12 @@ require('bfx-hf-util/lib/catch_uncaught_errors')
 
 const debug = require('debug')('bfx:hf:algo-server:node:server')
 const SocksProxyAgent = require('socks-proxy-agent')
-const connectDB = require('./connect-db')
-const {
-    PingPong, IcebergOrder, TWAPOrder, AccumulateDistribute
-} = require('bfx-hf-algo')
-
-const getSecret = require('./get-secret')
-
 const AOServer = require('bfx-hf-algo-server/lib/server')
-const {
-    SERVER_PORT, MONGODB_URL,
-    WS_URL, REST_URL,
-    SOCKS_PROXY_URL
-} = process.env
+const connectDB = require('./lib/connect-db')
+const getSecret = require('./lib/get-secret')
 
+const { PLATFORM, SERVER_PORT, MONGODB_URL, SOCKS_PROXY_URL } = process.env
+const { WS_URL, REST_URL } = require('./lib/platform')(PLATFORM)
 const API_KEY = getSecret('API_KEY')
 const API_SECRET = getSecret('API_SECRET')
 
@@ -28,17 +20,12 @@ const run = async () => {
     const server = new AOServer({
         apiKey: API_KEY,
         apiSecret: API_SECRET,
-        wsURL: WS_URL || 'wss://api.bitfinex.com/ws/2',
-        restURL: REST_URL || 'https://api.bitfinex.com',
+        wsURL: WS_URL,
+        restURL: REST_URL,
         agent: SOCKS_PROXY_URL ? new SocksProxyAgent(SOCKS_PROXY_URL) : null,
         port: SERVER_PORT || 8877,
 
-        aos: [
-            PingPong,
-            IcebergOrder,
-            TWAPOrder,
-            AccumulateDistribute
-        ],
+        aos: require('./lib/algos'),
     })
 
     server.on('auth:success', () => {
