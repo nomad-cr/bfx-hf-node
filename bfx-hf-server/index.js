@@ -10,8 +10,17 @@ const {
     PingPong, IcebergOrder, TWAPOrder, AccumulateDistribute
 } = require('bfx-hf-algo')
 
+const getSecret = require('./get-secret')
+
 const AOServer = require('bfx-hf-algo-server/lib/server')
-const { SERVER_PORT, MONGODB_URL, API_KEY, API_SECRET, WS_URL, REST_URL, SOCKS_PROXY_URL } = process.env
+const {
+    SERVER_PORT, MONGODB_URL,
+    WS_URL, REST_URL,
+    SOCKS_PROXY_URL
+} = process.env
+
+const API_KEY = getSecret('API_KEY')
+const API_SECRET = getSecret('API_SECRET')
 
 const run = async () => {
     await connectDB(MONGODB_URL || 'mongodb://localhost/hf-as')

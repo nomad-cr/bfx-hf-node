@@ -1,0 +1,24 @@
+version: '3.6'
+services:
+  mongodb:
+    image: mongo:3.6.8
+    networks:
+      - hf-net
+
+  hf-server:
+#    image: nomadcr/bfx-hf-server:latest
+    build: ./bfx-hf-server
+    networks:
+      - hf-net
+    ports:
+      - "8877:8877"
+    environment:
+      - API_KEY
+      - API_SECRET
+      - DEBUG=*
+      - MONGODB_URL=mongodb://mongodb/hf-as
+
+networks:
+  hf-net:
+    name: bfx-hf-node-net
+
