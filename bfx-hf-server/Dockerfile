@@ -10,7 +10,7 @@ FROM base AS release
 WORKDIR /srv
 COPY --from=dependencies /srv/node_modules ./node_modules
 COPY lib ./lib
-COPY package.json package-lock.json index.js algos.js ./
+COPY package.json package-lock.json index.js ./
 
 ENV PLATFORM=BITFINEX \
 #    API_KEY=CHANGE-ME \
