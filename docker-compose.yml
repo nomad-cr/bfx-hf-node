@@ -21,5 +21,4 @@ services:
 
 networks:
   hf-net:
-    name: bfx-hf-node-net
 
