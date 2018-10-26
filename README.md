@@ -98,7 +98,6 @@ at the time of initial `up` command, you can omit the flag.
 
 Should be as easy, as pulling git repo and updating docker containers:
 ```
-```
 cd ~/my-bfx/bfx-hf-node
 git pull
 git checkout tags/v1.0.6
