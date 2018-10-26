@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/nomad-cr/bfx-hf-node#readme",
   "dependencies": {
-    "bfx-hf-algo": "^1.0.4",
+    "bfx-hf-algo": "^1.0.6",
     "bfx-hf-algo-server": "^1.0.2",
     "bfx-hf-indicators": "^1.0.1",
     "socks-proxy-agent": "^4.0.1"
