@@ -101,6 +101,7 @@ Should be as easy, as pulling git repo and updating docker containers:
 cd ~/my-bfx/bfx-hf-node
 git pull
 git checkout tags/v1.0.6
+docker-compose pull
 docker-compose up -d # if not used named project with -p flag
 docker-compose -p bfx-account1 up -d
 docker-compose -p bfx-account2 up -d # if using multiple sets with -p flag, then do for each
