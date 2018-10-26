@@ -35,7 +35,7 @@ steps should be applied:
 1. In preferred location on your server `mkdir ~/my-bfx && cd ~/my-bfx`
 2. Clone the repository: `git clone https://github.com/nomad-cr/bfx-hf-node.git`
 3. `cd bfx-hf-node`
-4. Checkout version: `git checkout tags/v1.0.4`
+4. Checkout version: `git checkout tags/v1.0.6`
 
 For Bitfinex:
 
@@ -93,4 +93,18 @@ docker-compose -p bfx-account1 start
 For starting and stopping, if you are using single instance only, and didn't specify `-p` flag
 at the time of initial `up` command, you can omit the flag.
 
+
+### Updating
+
+Should be as easy, as pulling git repo and updating docker containers:
+```
+```
+cd ~/my-bfx/bfx-hf-node
+git pull
+git checkout tags/v1.0.6
+docker-compose up -d # if not used named project with -p flag
+docker-compose -p bfx-account1 up -d
+docker-compose -p bfx-account2 up -d # if using multiple sets with -p flag, then do for each
+```
+This will update containers and restart services.
 
