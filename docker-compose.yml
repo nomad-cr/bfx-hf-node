@@ -6,7 +6,7 @@ services:
       - hf-net
 
   hf-server:
-    image: nomadcr/bfx-hf-server:1.0.4
+    image: nomadcr/bfx-hf-server:1.0.6
     networks:
       - hf-net
     ports:
